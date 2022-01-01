@@ -1,0 +1,78 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = "postgresql://postgres:root@localhost:5432/try?schema=public"
+}
+
+
+model hotel {
+  id               String    @id @default(cuid())
+  ownerId          Int
+  name             String
+  description      String
+  address          Address?
+  images           Image[]
+  imageurl         String    @default("")
+  pricePerUnitTime Decimal
+  openingTime      String
+  closingTime      String
+  daysOpen         String[]
+  isActive         Boolean   @default(false)
+  createdAt        DateTime  @default(now())
+  updatedAt        DateTime  @updatedAt
+  bookings         Booking[]
+}
+
+model Address {
+  id          String  @id @default(cuid())
+  street      String
+  city        String
+  state       String
+  phoneNumber String
+  latitude    Float
+  longitude   Float
+  hotel     hotel @relation(fields: [hotelId], references: [id], onDelete: Cascade)
+  hotelId   String  @unique
+}
+
+model Image {
+  id         String   @id @default(cuid())
+  hotel    hotel? @relation(fields: [hotelId], references: [id], onDelete: Cascade)
+  hotelId  String?
+  asset_id   String
+  public_id  String
+  url        String
+  secure_url String
+}
+
+model Booking {
+  id            String        @id @default(cuid())
+  userId        Int //The id of the user who made this booking, coming from frontend
+  hotel       hotel       @relation(fields: [hotelId], references: [id])
+  hotelId     String
+  start         DateTime
+  end           DateTime
+  startStr      String
+  endStr        String
+  status        Status        @default(PENDING)
+  paymentStatus PaymentStatus @default(PENDING)
+}
+
+enum Status {
+  PENDING
+  ACCEPTED
+  CANCELED
+  COMPLETED
+}
+
+enum PaymentStatus {
+  PENDING
+  PAID
+}
+

@@ -1,0 +1,101 @@
+html,
+body {
+  padding: 0;
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
+    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.jobcontainer{
+  align-items: center;
+  display: grid;
+  grid-template-columns: 250px 250px 330px;
+  justify-content: space-around;
+  
+  }
+
+.cardcon{
+box-shadow: 0 4px 8px rgba(0, 0, 0, 1.0);
+transition: 3.0s;
+width: 300px;
+height: 400px;
+margin: 20px;
+}
+
+
+.button{
+  width:100%;
+  height: 50px;
+
+}
+.button:focus {     
+    background-color:rgb(255,255,102);    
+}
+
+
+.table-in{
+  align-items: center;
+  width: 100%;
+}
+
+.my-custom-scrollbar {
+position: relative;
+height: 500px;
+overflow: auto;
+}
+.table-wrapper-scroll-y {
+display: block;
+}
+
+.concard{
+  margin: 0 auto; /* Added */
+  float: none; /* Added */
+  margin-bottom: 10px; /* Added */
+  display: flex;
+box-shadow: 0 4px 8px rgba(0, 0, 0, 1.0);
+transition: 3.0s;
+width: 900px;
+height: 400px;
+align-items: center;
+}
+
+
+.concard>h2{
+  
+align-items: center;
+}
+#footer {
+    position: absolute;
+    bottom: 0;
+    width: 644px;
+    height: 20px;
+    margin: 0 auto;
+}
+
+
+@media screen and (max-width: 1000px) {
+ .jobcontainer{
+    grid-template-columns: 220px 340px;
+    flex-direction: column;
+  }
+
+
+}
+
+@media screen and (max-width: 760px) {
+  .jobcontainer{
+    grid-template-columns: 300px;
+    flex-direction: column;
+  }
+
+
+}
